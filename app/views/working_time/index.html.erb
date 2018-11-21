@@ -1,0 +1,29 @@
+<h2><%= @project.name %></h2>
+
+<table class="list">
+  <thead>
+    <tr>
+      <th>User</th>
+      <% @period.each do |p| %>
+        <th><%= p %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @table.each do |r| %>
+      <tr>
+        <% r.each_with_index do |c, i| %>
+          <% if i == 0 %>
+            <td><%= link_to c.name, c %></td>
+          <% else %>
+            <td class="cell <%= c < 6 ? 'red' : (c > 8 ? 'green' : 'normal') %>"><%= c %></td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% content_for :header_tags do %>
+    <%= stylesheet_link_tag 'working_time', plugin: 'working_time' %>
+<% end %>
